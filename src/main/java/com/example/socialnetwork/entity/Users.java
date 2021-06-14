@@ -21,7 +21,7 @@ public class Users {
 
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Posts> posts=new ArrayList<>();
+    private List<Posts> posts;
 
     public Users() {
     }

@@ -21,8 +21,11 @@ public class PostsControllers {
     private UsersRepository usersRepository;
 
     @PostMapping("/post/add")
-    public void add(@RequestBody Posts post) {
-        usersRepository.getById(12L).addPost(post);
+    public void add(@RequestBody String text) {
+        Posts posts = new Posts();
+        posts.setOwner(usersRepository.getById(1L));
+        posts.setText(text);
+        postsRepository.save(posts);
     }
 
     @PostMapping("/post/get")

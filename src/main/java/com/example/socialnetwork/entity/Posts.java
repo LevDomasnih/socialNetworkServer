@@ -5,21 +5,17 @@ import javax.persistence.*;
 @Entity
 public class Posts {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Users owner;
 
-    public String getId() {
-        return id;
+    public Posts() {
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getText() {
         return text;
@@ -35,5 +31,13 @@ public class Posts {
 
     public void setOwner(Users owner) {
         this.owner = owner;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
