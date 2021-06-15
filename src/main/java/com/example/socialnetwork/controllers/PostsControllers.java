@@ -2,9 +2,11 @@ package com.example.socialnetwork.controllers;
 
 import com.example.socialnetwork.entity.Posts;
 import com.example.socialnetwork.entity.Users;
+import com.example.socialnetwork.models.PostsRequest;
 import com.example.socialnetwork.repo.PostsRepository;
 import com.example.socialnetwork.repo.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +23,14 @@ public class PostsControllers {
     private UsersRepository usersRepository;
 
     @PostMapping("/post/add")
-    public void add(@RequestBody String text) {
+    public void add(@RequestBody PostsRequest postsRequest) {
         Posts posts = new Posts();
-        posts.setOwner(usersRepository.getById(1L));
-        posts.setText(text);
+        posts.setOwner(usersRepository.getById(postsRequest.getOwner()));
+        posts.setText(postsRequest.getText());
         postsRepository.save(posts);
     }
 
-    @PostMapping("/post/get")
+    @GetMapping("/post/get")
     public List<Posts> get() {
         return postsRepository.findAll();
     }

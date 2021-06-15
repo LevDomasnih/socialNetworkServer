@@ -1,16 +1,19 @@
 package com.example.socialnetwork.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 public class Posts {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Users owner;
 
     public Posts() {
