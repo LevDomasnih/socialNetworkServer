@@ -1,7 +1,6 @@
 package com.example.socialnetwork.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +21,9 @@ public class Users {
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Posts> posts;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Followed> followed;
 
     public Users() {
     }
@@ -77,5 +79,13 @@ public class Users {
 
     public void setPosts(List<Posts> posts) {
         this.posts = posts;
+    }
+
+    public List<Followed> getFollowed() {
+        return followed;
+    }
+
+    public void setFollowed(List<Followed> followed) {
+        this.followed = followed;
     }
 }
